@@ -1,9 +1,11 @@
+"""用python实现的评测脚本"""
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import numpy as np
 from collections import Counter
+
+import numpy as np
 from sklearn.utils.linear_assignment_ import linear_assignment
 
 
@@ -11,6 +13,7 @@ def f1(p_num, p_den, r_num, r_den, beta=1):
     p = 0 if p_den == 0 else p_num / float(p_den)
     r = 0 if r_den == 0 else r_num / float(r_den)
     return 0 if p + r == 0 else (1 + beta * beta) * p * r / (beta * beta * p + r)
+
 
 class CorefEvaluator(object):
     def __init__(self):
@@ -31,6 +34,7 @@ class CorefEvaluator(object):
 
     def get_prf(self):
         return self.get_precision(), self.get_recall(), self.get_f1()
+
 
 class Evaluator(object):
     def __init__(self, metric, beta=1):
